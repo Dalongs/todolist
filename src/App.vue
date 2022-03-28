@@ -1,8 +1,8 @@
 <template>
   <div>
     <MyHeader :addThings="addThings"></MyHeader>
-    <MyList :todoList="todoList" :checkTodos="checkTodos"></MyList>
-    <MyFooter></MyFooter>
+    <MyList :todoList="todoList" :checkTodos="checkTodos" :deleteTodos="deleteTodos"></MyList>
+    <MyFooter :todoList="todoList"></MyFooter>
   </div>
 </template>
 
@@ -38,6 +38,10 @@ export default {
           item.done = !item.done;
         }
       })
+    },
+    deleteTodos(id){
+      console.log('父组件删除', id);
+      this.todoList = this.todoList.filter(item => item.id != id );
     }
   }
 }

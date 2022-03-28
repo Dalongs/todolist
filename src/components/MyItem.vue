@@ -8,7 +8,7 @@
           </el-checkbox>
         </div>
         <div class="delete">
-          <el-button type="danger" size="mini">删除</el-button>
+          <el-button type="danger" size="mini" @click="handleDelete(item.id)">删除</el-button>
         </div>
       </div>
     </div>
@@ -24,11 +24,14 @@ export default {
       deletebtn: true
     }
   },
-  props: ['todoList', 'checkTodos'],
+  props: ['todoList', 'checkTodos', 'deleteTodos'],
   methods: {
     handleCheck(id){
-      console.log(id);
       this.checkTodos(id);
+    },
+    handleDelete(id){
+      console.log('删除', id);
+      this.deleteTodos(id);
     }
   }
 }
@@ -40,7 +43,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    padding: 0 15px;
   }
   .delete{
     text-align: right;
@@ -49,5 +52,8 @@ export default {
   .list-item:hover .delete{
     display: block;
     /* background-color: #ddd; */
+  }
+  .list-item:hover{
+    background-color: #eee;
   }
 </style>

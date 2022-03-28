@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <MyItem :todoList="todoList" :checkTodos="checkTodos"/>
+    <MyItem :todoList="todoList" :checkTodos="checkTodos" :deleteTodos="deleteTodos"/>
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
   methods: {
     
   },
-  props: ['todoList', 'checkTodos']
+  props: ['todoList', 'checkTodos', 'deleteTodos']
 }
 </script>
 <style scoped>
