@@ -3,7 +3,7 @@
     <div v-for="item in todoList" :key="item.id">
       <div class="list-item">
         <div>
-          <el-checkbox>
+          <el-checkbox :checked='item.done' @change="handleCheck(item.id)">
             {{item.name}}
           </el-checkbox>
         </div>
@@ -11,29 +11,6 @@
           <el-button type="danger" size="mini">删除</el-button>
         </div>
       </div>
-      <!-- <el-divider></el-divider> -->
-      <!-- <el-row>
-        <el-col :span="12">
-          <el-checkbox>
-            xxx
-          </el-checkbox>
-        </el-col>
-        <el-col :span="12" class="delete">
-          <el-button type="danger" size="mini">删除</el-button>
-        </el-col>
-      </el-row>
-      <el-divider></el-divider>
-      <el-row>
-        <el-col :span="12">
-          <el-checkbox>
-            xxx
-          </el-checkbox>
-        </el-col>
-        <el-col :span="12" class="delete">
-          <el-button type="danger" size="mini">删除</el-button>
-        </el-col>
-      </el-row>
-      <el-divider></el-divider> -->
     </div>
   </div>
   
@@ -47,7 +24,13 @@ export default {
       deletebtn: true
     }
   },
-  props: ['todoList']
+  props: ['todoList', 'checkTodos'],
+  methods: {
+    handleCheck(id){
+      console.log(id);
+      this.checkTodos(id);
+    }
+  }
 }
 </script>
 <style scoped>
