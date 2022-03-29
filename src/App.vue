@@ -19,11 +19,7 @@ export default {
   },
   data() {
     return {
-      todoList: [
-        {id: '001', name: '抽烟', done: true},
-        {id: '002', name: '喝酒', done: false},
-        {id: '003', name: '烫头', done: true}
-      ]
+      todoList: JSON.parse(localStorage.getItem('todoList')) || []
     }
   },
   methods: {
@@ -53,6 +49,14 @@ export default {
     deleteAllTodo(){
       this.todoList = this.todoList.filter( item => !item.done )
     }
+  },
+  watch: {
+      todoList: {
+        deep: true,
+        handler(value){
+            localStorage.setItem('todoList', JSON.stringify(value))
+        }
+      }
   }
 }
 </script>
