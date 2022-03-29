@@ -2,7 +2,7 @@
   <div>
     <MyHeader :addThings="addThings"></MyHeader>
     <MyList :todoList="todoList" :checkTodos="checkTodos" :deleteTodos="deleteTodos"></MyList>
-    <MyFooter :todoList="todoList"></MyFooter>
+    <MyFooter :todoList="todoList" :checkAllTodo="checkAllTodo" :deleteAllTodo="deleteAllTodo"></MyFooter>
   </div>
 </template>
 
@@ -27,21 +27,31 @@ export default {
     }
   },
   methods: {
+    //添加一项todo
     addThings(value){
       this.todoList.unshift(value);
     },
+    //选中一项todo
     checkTodos(id){
-      console.log('父组件的id', id);
       this.todoList.forEach(item => {
-        console.log(item);
         if (item.id === id) {
           item.done = !item.done;
         }
       })
     },
+    //删除一项todo
     deleteTodos(id){
-      console.log('父组件删除', id);
       this.todoList = this.todoList.filter(item => item.id != id );
+    },
+    //全选todo
+    checkAllTodo(done){
+      this.todoList.forEach((item) => {
+        item.done = done;
+      })
+    },
+    //清楚所有已完成
+    deleteAllTodo(){
+      this.todoList = this.todoList.filter( item => !item.done )
     }
   }
 }

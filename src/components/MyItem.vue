@@ -3,7 +3,8 @@
     <div v-for="item in todoList" :key="item.id">
       <div class="list-item">
         <div>
-          <el-checkbox :checked='item.done' @change="handleCheck(item.id)">
+          <!-- <el-checkbox :checked='item.done' @change="handleCheck(item.id)"> -->
+          <el-checkbox v-model='item.done'>
             {{item.name}}
           </el-checkbox>
         </div>
@@ -30,7 +31,6 @@ export default {
       this.checkTodos(id);
     },
     handleDelete(id){
-      console.log('删除', id);
       this.deleteTodos(id);
     }
   }
